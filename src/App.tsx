@@ -28,7 +28,12 @@ function App() {
 
       const [a, b, c] = win[i];
       if (state[a] !== null && state[a] === state[b] && state[a] === state[c]) return true;
+
     }
+  }
+  const checkdraw = (state: any[]) => {
+
+    return state.every(cell => cell !== null)
   }
 
   const HandleBlockClick = (index: number) => {
@@ -43,35 +48,38 @@ function App() {
     if (win) {
       // alert()
       Swal.fire(`${currentTurn} won the game`);
-     
-    }
 
+    }
+    const draw = checkdraw(stateCopy);
+    if (draw) {
+      Swal.fire("Draw");
+    }
     console.log(stateCopy)
 
   }
   return (
     <>
-    <h1>TIC-TAC-TOE</h1>
+      <h1>TIC-TAC-TOE</h1>
 
 
-    <div className='Board'>
-      <div className='row'>
-        <Block onClick={() => HandleBlockClick(0)} value={state[0]} />
-        <Block onClick={() => HandleBlockClick(1)} value={state[1]} />
-        <Block onClick={() => HandleBlockClick(2)} value={state[2]} />
-      </div>
-      <div className='row'>
-        <Block onClick={() => HandleBlockClick(3)} value={state[3]} />
-        <Block onClick={() => HandleBlockClick(4)} value={state[4]} />
-        <Block onClick={() => HandleBlockClick(5)} value={state[5]} />
-      </div>
-      <div className='row'>
-        <Block onClick={() => HandleBlockClick(6)} value={state[6]} />
-        <Block onClick={() => HandleBlockClick(7)} value={state[7]} />
-        <Block onClick={() => HandleBlockClick(8)} value={state[8]} />
-      </div>
+      <div className='Board'>
+        <div className='row'>
+          <Block onClick={() => HandleBlockClick(0)} value={state[0]} />
+          <Block onClick={() => HandleBlockClick(1)} value={state[1]} />
+          <Block onClick={() => HandleBlockClick(2)} value={state[2]} />
+        </div>
+        <div className='row'>
+          <Block onClick={() => HandleBlockClick(3)} value={state[3]} />
+          <Block onClick={() => HandleBlockClick(4)} value={state[4]} />
+          <Block onClick={() => HandleBlockClick(5)} value={state[5]} />
+        </div>
+        <div className='row'>
+          <Block onClick={() => HandleBlockClick(6)} value={state[6]} />
+          <Block onClick={() => HandleBlockClick(7)} value={state[7]} />
+          <Block onClick={() => HandleBlockClick(8)} value={state[8]} />
+        </div>
 
-    </div>
+      </div>
     </>
   )
 }
